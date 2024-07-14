@@ -51,7 +51,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -126,15 +126,31 @@ MonoBehaviour:
     guardGauge: 0
     rank: 0
   maxHealth: 500
+  subHealth: 0
   thresholdHealthRateSummon: 0.5
+  thresholdHealthRateHealing: 0
   healthRateHealed: 0.3
   attackBeginTime: 1
   attackPeriod: 3
-  chanceOfRootAttack: 0.8
-  chanceOfBerryBomb: 0.2
+  timeForFlowerSpawning: 3
+  timeForHealing: 10
+  timeForBerryMove: 3
+  chanceOfRootAttack: 0.7
+  chanceOfBerryBomb: 0.3
   prefabRoot: {fileID: 3756904208457183791, guid: 9691d8d6f62ed1544a4c10dae0eb4d16, type: 3}
   prefabBerryBomb: {fileID: 6280397613393638542, guid: e851b888f98cc824ea4ee608793ceca8, type: 3}
   prefabFlowerMon: {fileID: 730227577268071707, guid: da0ad636b8b1c5b4fa7605663ddb9981, type: 3}
+  flowerMonSpawnPositionMaxX: 0
+  flowerMonSpawnPositionMinX: 0
+  positionTopYofBerryCenter: 0
+  positionMinOfBerrySpawn: {x: 0, y: 0, z: 0}
+  positionMaxOfBerrySpawn: {x: 0, y: 0, z: 0}
+  positionMinOfBerryDestination: {x: 0, y: 0, z: 0}
+  positionMaxOfBerryDestination: {x: 0, y: 0, z: 0}
+  TEMP_colorDefault: {r: 0.5169811, g: 0.32983872, b: 0.065354206, a: 0}
+  TEMP_colorReadyRootAttack: {r: 1, g: 0, b: 0, a: 0}
+  TEMP_colorSelfHealing: {r: 0.57924527, g: 1, b: 0.81662995, a: 0}
+  TEMP_colorDead: {r: 0, g: 0, b: 0, a: 0}
 --- !u!54 &6494960327363205062
 Rigidbody:
   m_ObjectHideFlags: 0

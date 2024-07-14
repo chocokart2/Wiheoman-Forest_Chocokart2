@@ -36,6 +36,8 @@ public struct AttackExecutionTupule
 
 public class PlayerController : MonoBehaviour
 {
+    static public PlayerController instance;
+
     [SerializeField] private float moveSpeed = 2f;
     [SerializeField] private float jumpForce = 10f;
     private float playerInput;
@@ -103,6 +105,11 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
+        if (instance == null)
+        {
+            instance = this;
+        }
+
         if(playerRb == null)
         {
             playerRb = GetComponent<Rigidbody>();

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FlorainaRootController : MonoBehaviour
 {
-    [SerializeField] float beginWaitTime = 0.1f;
-    [SerializeField] float remainTime = 0.9f;
+    [SerializeField] float beginWaitTime = 0.5f;
+    [SerializeField] float remainTime = 0.5f;
 
 
     // Start is called before the first frame update

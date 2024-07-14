@@ -700,8 +700,68 @@ PrefabInstance:
       value: BossChapter1
       objectReference: {fileID: 0}
     - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorDefault.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorDefault.g
+      value: 0.21899725
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorDefault.r
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
       propertyPath: items.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: timeForBerryMove
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorSelfHealing.b
+      value: 0.6924528
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorSelfHealing.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorSelfHealing.r
+      value: 0.72153264
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorReadyRootAttack.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorReadyRootAttack.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: colorReadyRootAttack.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMaxOfBerrySpawn.x
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMaxOfBerrySpawn.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMinOfBerrySpawn.x
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMinOfBerrySpawn.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionTopYofBerryCenter
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
       propertyPath: flowerMonSpawnPositionMaxX
@@ -710,6 +770,22 @@ PrefabInstance:
     - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
       propertyPath: flowerMonSpawnPositionMinX
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMaxOfBerryDestination.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMaxOfBerryDestination.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMinOfBerryDestination.x
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4093728701819088487, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
+      propertyPath: positionMinOfBerryDestination.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7029041500260922254, guid: ad454d2fc8319864f806faa4764d97e1, type: 3}
       propertyPath: m_LocalPosition.x
