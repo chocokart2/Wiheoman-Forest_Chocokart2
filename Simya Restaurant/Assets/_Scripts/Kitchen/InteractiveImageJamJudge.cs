@@ -13,7 +13,7 @@ public class InteractiveImageJamJudge : InteractiveImageBase
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        if (Input.GetMouseButton(0) && InteractiveImageJamBottle.instance.isJamPicked)
+        if (Input.GetMouseButton(0) && InteractiveImageJamBottle.instance.IsJamPicked())
         {
             Placed();
         }
@@ -22,7 +22,7 @@ public class InteractiveImageJamJudge : InteractiveImageBase
 
     public override void OnPointerDown(PointerEventData eventData)
     {
-        if (InteractiveImageJamBottle.instance.isJamPicked)
+        if (InteractiveImageJamBottle.instance.IsJamPicked())
         {
             Placed();
         }

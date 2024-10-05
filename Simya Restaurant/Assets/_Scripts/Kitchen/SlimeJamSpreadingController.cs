@@ -47,6 +47,12 @@ public class SlimeJamSpreadingController : MonoBehaviour
         Debug.Log($"food result = {result}");
     }
 
+    public int GetJudgeCountPerSide()
+    {
+        return numberOfJudgePiecesPerSide;
+    }
+
+    [System.Obsolete]
     private void BakeJudgePieces()
     {
         RectTransform m_placeRectTransform = plainBreadGameObject.GetComponent<RectTransform>();
@@ -96,10 +102,14 @@ public class SlimeJamSpreadingController : MonoBehaviour
 
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
 
         if (numberOfJudgePiecesPerSide <= 0)
         {
@@ -110,12 +120,13 @@ public class SlimeJamSpreadingController : MonoBehaviour
             jamSize = 0.3f;
         }
 
-        BakeJudgePieces();
+        jamJudgeMax = numberOfJudgePiecesPerSide * numberOfJudgePiecesPerSide;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

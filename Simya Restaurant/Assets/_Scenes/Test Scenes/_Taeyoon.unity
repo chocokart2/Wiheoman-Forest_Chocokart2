@@ -659,12 +659,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a494b850c17aa7a478dd228535f8b942, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isJamPicked: 0
   jamBottleGameObject: {fileID: 896671330}
   jamBlobGameObject: {fileID: 1141179971}
   jamTraceGameObject: {fileID: 7757061183781485875, guid: 0cfbc3503a2cb9147bef496384ebbf6c,
     type: 3}
   jamTraceTransformParentGameObject: {fileID: 1474572032}
+  plainBreadGameObject: {fileID: 292582480}
   imageFullJam: {fileID: 21300000, guid: 5abd4cdab16e88440a4b02a50fcbc2c0, type: 3}
   imageHalfJam: {fileID: 21300000, guid: c50efd781bb5b954cb7451ac28733731, type: 3}
   jamDragTerm: 0.05
@@ -1105,12 +1105,12 @@ PrefabInstance:
     - target: {fileID: 3294191175782161074, guid: 4cf06c015f3fa9c439bf98ee011aa852,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.32
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3294191175782161074, guid: 4cf06c015f3fa9c439bf98ee011aa852,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3294191175782161074, guid: 4cf06c015f3fa9c439bf98ee011aa852,
         type: 3}

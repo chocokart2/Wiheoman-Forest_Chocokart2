@@ -1,5 +1,4 @@
 using JetBrains.Annotations;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -44,7 +43,27 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 10f;
     private float playerInput;
     private Rigidbody playerRb;
-    private bool isGround = true;
+
+    // 지면 체크 및 경사면 변수
+    [System.Serializable]
+    public class SlopeVariable
+    {
+        public bool isGround = true;
+        public float slopeAngle;
+        public float slopeAngleLimit;
+        public float gravity;
+        public float verticalVelocity;
+        public float groundCastRadius;
+        public float groundCheckDistance;
+        public float groundCheckThreshold;
+        public LayerMask groundLayer;
+        public Vector3 groundCross;
+
+        [HideInInspector]public float capsuleRadiusDiff;
+    }
+    [Header("Slope")]
+    [SerializeField] private SlopeVariable _slopeVariable = new SlopeVariable();
+    private SlopeVariable SV => _slopeVariable;
 
     // 플레이어 상태 변수
     private EPlayerStatus currentPlayerStatus;
@@ -158,11 +177,13 @@ public class PlayerController : MonoBehaviour
         }
 
         EnemyBase.SetPlayer(gameObject);
-        animatorController = transform.Find("Armature").GetComponent<Animator>();
+        //animatorController = transform.Find("Armature").GetComponent<Animator>();
         
         // 함수 정상 진행 조건
         Debug.Assert(playerRb != null);
-        Debug.Assert(animatorController != null);
+        //Debug.Assert(animatorController != null);
+
+        SV.capsuleRadiusDiff = GetComponent<CapsuleCollider>().radius - SV.groundCastRadius + 0.05f;
     }
 
     void Update()
@@ -170,11 +191,17 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
 
-        DoAttackLight();
-        DoAttackHeavy(); //여기 바로 윗줄 포함 주석해제
-        DoInteractive();
+        //DoAttackLight();
+        //DoAttackHeavy(); //여기 바로 윗줄 포함 주석해제
+        //DoInteractive();
+        //
+        //TEMP_PlayAnimate();
+    }
 
-        TEMP_PlayAnimate();
+    private void FixedUpdate()
+    {
+        GroundCheck();
+        Gravity();
     }
 
     void Move()
@@ -185,11 +212,58 @@ public class PlayerController : MonoBehaviour
         }
 
         playerInput = Input.GetAxis("Horizontal");
-
         Vector3 currentVelocity = playerRb.velocity;
-        Vector3 targetVelocity = new Vector3(playerInput * moveSpeed, currentVelocity.y, currentVelocity.z);
-        Vector3 newVelocity = Vector3.Lerp(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
-        playerRb.velocity = newVelocity;
+        Vector3 targetVelocity = Vector3.zero;
+        targetVelocity.x = playerInput * moveSpeed;
+
+        Vector3 horizontalVelocity = Vector3.zero;
+
+        //Vector3 horizontalVelocity = Quaternion.AngleAxis(-SV.slopeAngle, SV.groundCross)    //경사면 움직임 코드
+        //                                * Vector3.Lerp(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
+
+        if (SV.slopeAngle < SV.slopeAngleLimit)
+        {
+            horizontalVelocity = Quaternion.AngleAxis(-SV.slopeAngle, SV.groundCross) * targetVelocity;
+        }
+        playerRb.velocity = horizontalVelocity + Vector3.up * SV.verticalVelocity;
+    }
+
+    void GroundCheck()
+    {
+        float groundDistance = float.MaxValue;
+        Vector3 groundNormal = Vector3.up;
+        SV.slopeAngle = 0f;
+        SV.isGround = false;
+
+        Vector3 groundCastPos = transform.position + new Vector3(0f, SV.groundCastRadius + 0.05f, 0f);
+
+        bool cast = Physics.SphereCast(groundCastPos, SV.groundCastRadius, Vector3.down, out var hit, SV.groundCheckDistance, SV.groundLayer);
+        if (cast)
+        {
+            groundNormal = hit.normal;
+            groundDistance = Mathf.Max(hit.distance - SV.capsuleRadiusDiff - SV.groundCheckThreshold, -10f);
+            Debug.Log(hit.distance + " / " + groundDistance);
+            SV.isGround = groundDistance <= 0.0001f;
+
+            if (SV.isGround)
+            {
+                SV.slopeAngle = Vector3.Angle(groundNormal, Vector3.up);
+            }
+        }
+
+        SV.groundCross = Vector3.Cross(groundNormal, Vector3.up);
+    }
+
+    private void Gravity()
+    {
+        if (SV.isGround)
+        {
+            SV.verticalVelocity = 0f;
+        }
+        else
+        {
+            SV.verticalVelocity += Time.fixedDeltaTime * SV.gravity;
+        }
     }
 
     void Jump()
@@ -198,11 +272,11 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if(Input.GetKeyDown(KeyCode.Space) && isGround) 
+        if(Input.GetKeyDown(KeyCode.Space) && SV.isGround) 
         {
             playerRb.velocity = Vector3.zero;
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGround = false;
+            SV.isGround = false;
         }
     }
 
@@ -383,14 +457,6 @@ public class PlayerController : MonoBehaviour
             );
 
         sortedArray[0].DoInteractiveWithThis();
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGround = true;
-        }
     }
 
     /// <summary>
